@@ -4,6 +4,9 @@ import CactiController from './CactiController.js';
 import Score from './Score.js';
 import ItemController from './ItemController.js';
 import { sendEvent } from './Socket.js';
+import itemUnlockData from "./assets/item_unlock.json" assert {type: "json"};
+import itemData from "./assets/item.json" assert {type: "json"};
+import stageData from "./assets/stage.json" assert {type: "json"};
 
 const canvas = document.getElementById('game');
 const ctx = canvas.getContext('2d');
@@ -104,7 +107,7 @@ function createSprites() {
 
   itemController = new ItemController(ctx, itemImages, scaleRatio, GROUND_SPEED);
 
-  score = new Score(ctx, scaleRatio);
+  score = new Score(ctx, scaleRatio, itemData, stageData);
 }
 
 function getScaleRatio() {

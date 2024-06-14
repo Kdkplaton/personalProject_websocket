@@ -6,7 +6,7 @@ let gameAssets = [];
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const basePath = path.join(__dirname, '../../assets');
+const basePath = path.join(__dirname, '../../public/assets');
 
 
 // 파일 읽는 함수
@@ -27,13 +27,13 @@ const readFileAsync = (filename) => {
 // Promise.all() : 이게뭔지 공부ㄱ
 export const loadGameAssets = async () => {
   try {
-    const [stages, item, itemUnlocks] = await Promise.all([
+    const [stages, items, itemUnlocks] = await Promise.all([
       readFileAsync('stage.json'),
       readFileAsync('item.json'),
       readFileAsync('item_unlock.json'),
     ]);
   
-    gameAssets = { stages, item, itemUnlocks };
+    gameAssets = { stages, items, itemUnlocks };
     return gameAssets;
   } catch(e) {
     throw new Error('Failed to load game assets: '+ e.message);
